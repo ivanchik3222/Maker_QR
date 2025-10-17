@@ -6,12 +6,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# Отдаём манифест
 @app.route('/manifest.json')
 def manifest():
     return send_from_directory('.', 'manifest.json')
 
-# Отдаём иконки
 @app.route('/static/icons/<path:filename>')
 def icons(filename):
     return send_from_directory('static/icons', filename)
