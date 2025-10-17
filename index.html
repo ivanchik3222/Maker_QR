@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maker Space QR</title>
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#1a73e8" />
+
+  <!-- Цвет верхней полоски = цвет фона -->
+  <meta name="theme-color" content="#f5f8fa" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+
   <link rel="icon" href="logo.png" type="image/png" />
 
   <style>
@@ -37,11 +41,13 @@
       font-family: "Inter", system-ui, -apple-system, sans-serif;
       color: var(--text-dark);
       line-height: 1.5;
-      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden; /* убираем лишний скролл */
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1rem;
+      margin: 0;
     }
 
     .card {

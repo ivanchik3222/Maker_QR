@@ -1,26 +1,16 @@
 {
-  "name": "Фото-загрузчик",
-  "short_name": "Галерея",
-  "start_url": "./index.html",
+  "name": "Maker Space QR",
+  "short_name": "Maker QR",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#f5f8fa",
+  "theme_color": "#f5f8fa",
   "icons": [
     {
       "src": "logo.png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo.png",
-      "sizes": "512x512"
-    },
-    {
-      "src": "logo.png",
-      "sizes": "1024x1024"
-    },
-    {
-      "src": "logo.png",
-      "sizes": "2048x2048"
+      "sizes": "2048x2048",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
