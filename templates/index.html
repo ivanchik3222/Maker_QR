@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maker Space QR</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="../static/logo.png" type="image/png">
+  <meta name="theme-color" content="#1a73e8">
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --primary-hover: #1558b0;
+      --accent: #17a2b8;
+      --bg-light: #f5f8fa;
+      --bg-white: #ffffff;
+      --text-dark: #1f1f1f;
+      --text-muted: #666666;
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    /* Тёмная тема */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-light: #121212;
+        --bg-white: #1e1e1e;
+        --text-dark: #f5f5f5;
+        --text-muted: #b5b5b5;
+        --shadow: 0 4px 14px rgba(0,0,0,0.5);
+      }
+
+      body {
+        background-color: var(--bg-light);
+      }
+
+      .card {
+        box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+      }
+
+      .upload-btn {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .upload-btn:hover {
+        background: var(--primary-hover);
+      }
+
+      img#preview {
+        box-shadow: 0 2px 8px rgba(255,255,255,0.08);
+      }
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-light);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .card {
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 400px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+
+    .upload-wrapper {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+
+    .upload-wrapper input[type="file"] {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .upload-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .upload-btn:hover {
+      background: var(--primary-hover);
+    }
+
+    img#preview {
+      display: block;
+      margin: 1.5rem auto;
+      width: 100%;
+      max-height: 280px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      transition: opacity 0.4s ease-in-out, box-shadow 0.3s;
+      opacity: 0;
+    }
+
+    img#preview.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .upload-btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Maker Space QR</h1>
+
+    <div class="upload-wrapper">
+      <button class="upload-btn">Выбрать фото</button>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <img id="preview" alt="Ваше фото">
+  </div>
+
+  <script>
+    const input = document.getElementById('fileInput');
+    const preview = document.getElementById('preview');
+
+    function showImage(src) {
+      preview.src = src;
+      preview.classList.add('visible');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('savedImage');
+      if (saved) {
+        showImage(saved);
+      }
+    });
+
+    input.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const data = ev.target.result;
+        showImage(data);
+        localStorage.setItem('savedImage', data);
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
+</html>
