@@ -105,16 +105,18 @@
       margin: 1.5rem auto;
       width: 100%;
       max-height: 280px;
-      object-fit: cover;
+      object-fit: contain; /* ✅ Вместо cover */
       border-radius: var(--radius);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       transition: opacity 0.4s ease-in-out;
+      background-color: #111; /* ✅ чтобы при несоответствии сторон был фон */
       opacity: 0;
     }
 
     img#preview.visible {
       opacity: 1;
     }
+
 
     @media (max-width: 500px) {
       .card {
