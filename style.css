@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: light-dark(#f9f9f9, #121212);
+  color: light-dark(#000, #fff);
+  min-height: 100vh;
+}
+
+h1 {
+  margin: 1rem;
+}
+
+input[type="file"] {
+  margin: 1rem;
+}
+
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 90%;
+}
+
+#gallery img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
